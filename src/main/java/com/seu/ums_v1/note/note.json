@@ -1,0 +1,68 @@
+[
+  {
+    "username":"admin",
+    "password":"admin",
+    "email": "admin@gamil.com",
+    "active": true,
+    "roles": [
+      {
+        "role": "ADMIN"
+      }
+    ]
+  },
+  {
+    "name": "School of Science",
+    "campus": {
+      "id": 1
+    }
+  },
+  {
+    "code": "CSE",
+    "title": "Computer Science and Engineering",
+    "label": "Engineering",
+    "length": 4,
+    "school": {
+      "id": 16
+    }
+  },
+  {
+    "firstName": "Sifat",
+    "lastName": "ahamed",
+    "title": "Engineer",
+    "birthday": "1985-05-02",
+    "gender": "male",
+    "joiningDate": "2015-02-25",
+    "officeRoom": "ar1010",
+    "phone": [
+      {
+        "phone_no": "01611111111"
+      },
+      {
+        "phone_no": "01911111111"
+      }
+    ],
+    "school": {
+      "id": 3
+    }
+  },
+  {
+    "yearTaken": 2020,
+    "semesterTaken": "spring",
+    "student": {
+      "id": 43
+    },
+    "courses": {
+      "ssn": "25cse1011"
+    }
+  },
+  {
+    "lecturer_course": {
+      "lecturer": {
+        "id": 25
+      },
+      "course": {
+        "code": "cse1011"
+      }
+    }
+  }
+]
