@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "school")
 @Data
 @NoArgsConstructor
 @JsonIdentityInfo(
@@ -23,16 +23,19 @@ public class School {
     private int Id;
     private String Name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     private Campus Campus;
 
+    @JsonBackReference
+    public Campus getCampus() {
+        return Campus;
+    }
+
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
-    @JsonIgnore
+//    @JsonIgnore
     private List<Programme> programme = new ArrayList<>();
 
     @OneToMany(mappedBy = "school",fetch = FetchType.EAGER)
-    @JsonIgnore
     private List<Lecturer> lecturers = new ArrayList<>();
 
 }

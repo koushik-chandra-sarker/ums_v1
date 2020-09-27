@@ -26,16 +26,16 @@ public class Programme {
     @ManyToOne
     private School school;
 
+    @JsonBackReference
+    public School getSchool() {
+        return school;
+    }
 
     @OneToMany(mappedBy = "programme", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
-   /* @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Course_code", referencedColumnName = "code")
-    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "programme" )
     private List<Course> courses = new ArrayList<>();
-*/
 
 
 }

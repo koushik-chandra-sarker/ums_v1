@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -45,6 +47,11 @@ public class Student {
 
     @ManyToOne
     private Programme programme;
+
+    @JsonBackReference
+    public Programme getProgramme() {
+        return programme;
+    }
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @JsonIgnore

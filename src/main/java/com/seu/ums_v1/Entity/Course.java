@@ -32,13 +32,17 @@ public class Course implements Serializable {
     @ManyToOne
     private Programme programme;
 
+    @JsonBackReference
+    public Programme getProgramme() {
+        return programme;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "pre_course",
             joinColumns = @JoinColumn(name = "course_code"),
             inverseJoinColumns = @JoinColumn(name = "pre_course_code")
     )
-    @JsonBackReference
     private List<Course> pre_course;
 
 

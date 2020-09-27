@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,19 @@ public class Lecturer{
     @ManyToOne
     private School school;
 
+    @JsonBackReference
+    public School getSchool() {
+        return school;
+    }
+
     @ManyToOne
     @JoinColumn
     private Lecturer supervisor;
+
+//    @JsonIgnore
+//    public Lecturer getSupervisor() {
+//        return supervisor;
+//    }
 
     @OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
     @JsonIgnore

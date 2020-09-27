@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,13 +21,13 @@ import java.util.List;
 public class Campus{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private Integer Id;
     private String Name;
     private String Address;
 
     @OneToMany(mappedBy ="Campus",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH,CascadeType.DETACH},
+            fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<School> school;
 

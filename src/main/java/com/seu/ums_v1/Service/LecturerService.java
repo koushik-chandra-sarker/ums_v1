@@ -24,7 +24,9 @@ public class LecturerService {
     public Optional<Lecturer> getLecturer(long id){
         return lecturerRepository.findById(id);
     }
-
+    public int getSchoolId(int id){
+        return lecturerRepository.findSchoolByLId(id);
+    }
     public void addLecturer(Lecturer lecturer){
         lecturerRepository.save(lecturer);
     }

@@ -25,6 +25,10 @@ public class SchoolService {
         return schoolRepository.findById(id);
     }
 
+ /*   public Object getOnlySchool(int id){
+        return schoolRepository.findSchoolById(id);
+    }*/
+
     public void addSchool(School school){
         schoolRepository.save(school);
     }
@@ -35,5 +39,8 @@ public class SchoolService {
 
     public void deleteSchool(int id){
         schoolRepository.deleteById(id);
+    }
+    public void deleteCampusBySid(int id){
+        schoolRepository.deleteCampusById(id);
     }
 }
