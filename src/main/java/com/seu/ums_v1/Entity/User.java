@@ -43,4 +43,7 @@ public class User{
 
     @OneToOne
     private Student student;
+
+    @OneToOne
+    private Superuser superuser;
 }
