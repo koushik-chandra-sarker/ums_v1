@@ -1,5 +1,6 @@
 package com.seu.ums_v1.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,7 +33,7 @@ public class User{
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -41,9 +42,10 @@ public class User{
     @OneToOne
     private Lecturer lecturer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.DETACH)
     private Student student;
 
     @OneToOne
     private Superuser superuser;
+
 }

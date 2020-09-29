@@ -55,7 +55,7 @@ public class StudentController {
         String sfname = std.getFirstName();
         User user = userService.getUserByUsername(sfname+sid);
         if (user != null ){
-            return "User Already created.";
+            return "User Already Exists.";
         }else {
             User u = new User();
             u.setUsername(sfname + sid);

@@ -1,9 +1,10 @@
 package com.seu.ums_v1.Controller;
 
+import com.seu.ums_v1.Entity.Role;
 import com.seu.ums_v1.Entity.User;
+import com.seu.ums_v1.Repository.RoleRepository;
 import com.seu.ums_v1.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -25,6 +28,14 @@ public class UserController {
     public List<User> getAllUser(){
 
         return userService.getAllUser();
+    }
+    @RequestMapping(path = "/users/lid/{id}")
+    public User getUserBYLId(@PathVariable int id){
+        return userService.getUserByLId(id);
+    }
+    @RequestMapping(path = "/users/sid/{id}")
+    public User getUserBYSId(@PathVariable int id){
+        return userService.getUserBySId(id);
     }
 
     //Fetch one
@@ -57,6 +68,17 @@ public class UserController {
     //Delete
     @RequestMapping(method = RequestMethod.DELETE, value = "/users/delete/{id}")
     public void deleteUser(@PathVariable int id){
+
+
+        Optional<User> user = userService.getUser(id);
         userService.deleteUser(id);
+        if (user.isPresent()){
+            List<Role> roles =  user.get().getRoles();
+            for(Role role: roles){
+                roleRepository.deleteById(role.getRoleId());
+            }
+
+        }
+
     }
 }

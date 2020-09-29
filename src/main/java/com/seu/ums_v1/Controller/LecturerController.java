@@ -71,7 +71,7 @@ public class LecturerController {
 
         User user = userService.getUserByUsername(lfname+lid);
         if (user != null ){
-            return "User Already created.";
+            return "User Already Exists.";
         }else {
             User u = new User();
             u.setUsername(lfname + lid);

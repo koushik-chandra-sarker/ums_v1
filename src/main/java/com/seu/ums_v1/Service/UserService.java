@@ -22,6 +22,14 @@ public class UserService {
         return (List<User>) userRepository.findAll();
     }
 
+    public User getUserByLId(int id){
+        return userRepository.findUserByLecturerId(id);
+    }
+    public User getUserBySId(int id){
+        return userRepository.findUserByStudentId(id);
+    }
+
+
     public Optional<User> getUser(int id){
         return userRepository.findById(id);
     }
@@ -44,6 +52,8 @@ public class UserService {
     }
 
     public void deleteUser(int id){
-        userRepository.deleteById(id);
+        userRepository.deleteUser_roleById(id);
+         userRepository.deleteUserById(id);
+//        userRepository.deleteById(id);
     }
 }

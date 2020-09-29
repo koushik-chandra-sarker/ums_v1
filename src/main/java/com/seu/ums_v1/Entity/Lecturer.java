@@ -67,6 +67,11 @@ public class Lecturer{
 
 
     @OneToOne(mappedBy = "lecturer", cascade = CascadeType.ALL)
+    @JsonIgnore
     private User user;
 
+//    @JsonBackReference
+//    public User getUser() {
+//        return user;
+//    }
 }

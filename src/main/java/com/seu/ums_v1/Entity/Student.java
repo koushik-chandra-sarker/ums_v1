@@ -58,6 +58,13 @@ public class Student {
     private List<Course_Student> Reg_courses = new ArrayList<>();
 
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    @JsonIgnore
     private User user;
+
+//    @JsonBackReference
+//    public User getUser() {
+//        return user;
+//    }
+
 
 }
