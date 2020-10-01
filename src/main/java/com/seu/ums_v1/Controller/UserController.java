@@ -62,6 +62,9 @@ public class UserController {
     //Update
     @RequestMapping(method = RequestMethod.PUT, value = "/users/update")
     public void updateUser(@RequestBody User User){
+        String pass = User.getPassword();
+        String encryptPwd = passwordEncoder.encode(pass);
+        User.setPassword(encryptPwd);
         userService.updateUser(User);
     }
 

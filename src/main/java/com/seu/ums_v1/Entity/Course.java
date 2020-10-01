@@ -37,23 +37,23 @@ public class Course implements Serializable {
         return programme;
     }
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(
             name = "pre_course",
             joinColumns = @JoinColumn(name = "course_code"),
             inverseJoinColumns = @JoinColumn(name = "pre_course_code")
     )
-    private List<Course> pre_course;
+    private List<Course> pre_course;*/
 
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+ /*   @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "pre_course",
             joinColumns = @JoinColumn(name = "pre_course_code"),
             inverseJoinColumns = @JoinColumn(name = "course_code")
     )
     @JsonIgnore
-    private List<Course> courses;
+    private List<Course> courses;*/
 
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
     @JsonIgnore

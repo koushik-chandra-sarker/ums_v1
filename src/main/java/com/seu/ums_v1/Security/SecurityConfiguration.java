@@ -37,8 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/api/v1/management/superuser/create").permitAll()
-                .antMatchers("/api/v1/management/users/uname/**").hasAnyRole("USER","ADMIN","LECTURER","STUDENT")
-                .antMatchers("/api/v1/management/students/find/*").hasAnyRole("USER","ADMIN","LECTURER","STUDENT")
+                .antMatchers("/api/v1/management/users/uname/**").hasAnyRole("ADMIN","LECTURER","STUDENT")
+                .antMatchers("/api/v1/management/users/sid/**").hasAnyRole("ADMIN","LECTURER","STUDENT")
+                .antMatchers("/api/v1/management/users/lid/**").hasAnyRole("ADMIN","LECTURER")
+                .antMatchers("/api/v1/management/students/find/*").hasAnyRole("ADMIN","LECTURER","STUDENT")
                 .antMatchers("/api/v1/management/**").hasAnyRole("ADMIN","LECTURER")
                 .anyRequest()
                 .authenticated()

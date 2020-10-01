@@ -51,12 +51,10 @@ public class Lecturer{
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Lecturer supervisor;
 
-//    @JsonIgnore
-//    public Lecturer getSupervisor() {
-//        return supervisor;
-//    }
+
 
     @OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
     @JsonIgnore
